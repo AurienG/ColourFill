@@ -24,7 +24,20 @@ public class Board {
 		}
 	}
 
-	public void change(String colour) {
+	public void change(char colour) {
+		int x = 0;
+		int y = 0;
+
+		
+		for (int i = 0; i < rows; i++) {
+			while(board[0][0]==board[i][x]) {
+				x++;}
+			board[i][x].setState(colour);
+		}
+
+		board[0][0].setState(colour);
+	
+		
 		
 	}
 	
@@ -38,4 +51,3 @@ public class Board {
 		}
 	}
 }
-

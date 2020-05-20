@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * Text (console) based driver for testing purposes.
- * @author Hutchison
+ * @author not Hutchison
  *
  */
 public class Driver {
@@ -26,7 +26,7 @@ public class Driver {
 		Scanner in = new Scanner(System.in);
 		boolean done = false;
 		String value = "";
-		String colour = "0";
+		char colour = 'f';
 		
 		while (done != true) {
 			colour = getColour();
@@ -37,7 +37,7 @@ public class Driver {
 		}
 	
 	
-	private static String getColour() {
+	private static char getColour() {
 		Scanner in = new Scanner(System.in);
 		boolean valid = false;
 		String colour = "";
@@ -53,8 +53,7 @@ public class Driver {
 				valid = false;
 			}
 		}
-		return colour;
+		return colour.charAt(0);
 	}
 }
-
 

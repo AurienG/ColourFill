@@ -29,8 +29,15 @@ public class Cell {
 	 * 
 	 * @param cs new state
 	 */
-	public void setState(int cs) {
-		state = cs;
+	public void setState(char colour) {
+		if (colour == 'R') {
+			state = 'R';
+		}else if(colour == 'G') {
+			state = 'G';	
+		}else if(colour == 'B') {
+			state = 'B';}
+		else if(colour == 'Y') {
+			state = 'Y';}
 	}
 
 	/**
@@ -63,4 +70,3 @@ public class Cell {
 		return cell;
 		}
 	}
-
