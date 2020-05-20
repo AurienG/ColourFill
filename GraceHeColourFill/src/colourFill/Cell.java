@@ -1,0 +1,66 @@
+package colourFill;
+
+
+import java.util.Random;;
+
+public class Cell {
+	Random rand = new Random();
+	char[] chars = "RYGB".toCharArray();
+	private int state;
+
+	/**
+	 * Constructor with known state.
+	 * 
+	 * @param cs initial state
+	 */
+	public Cell(int cs) {
+		state = cs;
+	}
+
+	/**
+	 * Default constructor with empty state.
+	 */
+	public Cell() {
+		state = chars[rand.nextInt(chars.length)];
+	}
+
+	/**
+	 * Change the state of a cell.
+	 * 
+	 * @param cs new state
+	 */
+	public void setState(int cs) {
+		state = cs;
+	}
+
+	/**
+	 * Check state of a cell
+	 * 
+	 * @return state of a cell
+	 */
+	public int getState() {
+		return state;
+	}
+
+	/**
+	 * String representation of a cell
+	 */
+	@Override
+	public String toString() {
+		String cell = "0";
+		if (state == 'R') {
+			cell = "R";
+			}
+		else if (state == 'B') {
+			cell = "B";
+		}
+		else if (state == 'Y') {
+			cell = "Y";
+		}
+		else if (state == 'G'){
+			cell = "G";
+		}
+		return cell;
+		}
+	}
+
