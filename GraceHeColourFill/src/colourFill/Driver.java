@@ -44,7 +44,7 @@ public class Driver {
 				}
 			}
 		}
-		System.out.println(count + "clicks");
+		System.out.println("You used" + count + " clicks");
 
 	}
 
