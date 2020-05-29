@@ -30,7 +30,7 @@ public class Driver {
 		
 		while (done != true) {
 			colour = getColour();
-			board.change(colour);
+			board.floodFill(0,0, board.getCellState(0,0),colour);
 			board.display();
 		}
 		

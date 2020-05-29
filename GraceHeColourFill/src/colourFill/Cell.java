@@ -6,14 +6,14 @@ import java.util.Random;;
 public class Cell {
 	Random rand = new Random();
 	char[] chars = "RYGB".toCharArray();
-	private int state;
+	private char state;
 
 	/**
 	 * Constructor with known state.
 	 * 
 	 * @param cs initial state
 	 */
-	public Cell(int cs) {
+	public Cell(char cs) {
 		state = cs;
 	}
 
@@ -45,7 +45,7 @@ public class Cell {
 	 * 
 	 * @return state of a cell
 	 */
-	public int getState() {
+	public char getState() {
 		return state;
 	}
 

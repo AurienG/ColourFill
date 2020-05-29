@@ -23,22 +23,29 @@ public class Board {
 			}
 		}
 	}
-
-	public void change(char colour) {
-		int x = 0;
-		int y = 0;
-
-		
-		for (int i = 0; i < rows; i++) {
-			while(board[0][0]==board[i][x]) {
-				x++;}
-			board[i][x].setState(colour);
-		}
-
-		board[0][0].setState(colour);
 	
-		
-		
+	public char getCellState(int col, int row) {
+		return board[col][row].getState();
+	}
+
+	public void floodFill(int col, int row,char targetColour, char replaceColour) {
+		if (targetColour == replaceColour||board[col][row].getState() != targetColour) {
+			return; 
+		}
+		else{board[col][row].setState(replaceColour);}
+
+		if (col>0) {
+			floodFill((col-1),row,targetColour, replaceColour);
+		}
+		if(col<6) {
+			floodFill((col+1),row,targetColour, replaceColour);
+		}
+		if(row>0) {
+			floodFill(col,(row-1),targetColour, replaceColour);
+		}
+		if(row<5) {
+			floodFill(col,(row+1),targetColour, replaceColour);
+		}
 	}
 	
 	public void display() {
