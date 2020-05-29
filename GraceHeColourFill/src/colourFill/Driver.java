@@ -28,11 +28,23 @@ public class Driver {
 		String value = "";
 		char colour = 'f';
 
+		int count = 0;
+		
 		while (done != true) {
+			done = true;
 			colour = getColour();
 			board.floodFill(0, 0, board.getCellState(0, 0), colour);
 			board.display();
+			count++;
+			for(int row = 0; row<6;row++) {
+				for (int col = 0;col<7;col++) {
+					if (board.getCellState(0,0)!= board.getCellState(row,col)) {
+						done = false;
+					}
+				}
+			}
 		}
+		System.out.println(count + "clicks");
 
 	}
 

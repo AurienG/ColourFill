@@ -24,7 +24,7 @@ public class Board {
 		}
 	}
 	
-	public char getCellState(int col, int row) {
+	public char getCellState(int row, int col) {
 		return board[row][col].getState();
 	}
 
