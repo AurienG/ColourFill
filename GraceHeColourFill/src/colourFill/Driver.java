@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Text (console) based driver for testing purposes.
+ * 
  * @author not Hutchison
  *
  */
@@ -21,38 +22,35 @@ public class Driver {
 		// create the board
 		Board board = new Board(ROWS, COLS);
 		board.display();
-		
+
 		// console input
 		boolean done = false;
 		String value = "";
 		char colour = 'f';
-		
+
 		while (done != true) {
 			colour = getColour();
-			board.floodFill(0,0, board.getCellState(0,0),colour);
+			board.floodFill(0, 0, board.getCellState(0, 0), colour);
 			board.display();
 		}
-		
-		}
-	
-	
+
+	}
+
 	private static char getColour() {
 		Scanner in = new Scanner(System.in);
 		boolean valid = false;
 		String colour = "";
-		
+
 		while (valid != true) {
-			String prompt = String.format("Which Colour (" + "R" + "B" + "Y" + "G" +"): " ); 
+			String prompt = String.format("Which Colour (" + "R" + "B" + "Y" + "G" + "): ");
 			System.out.println(prompt);
 			colour = in.nextLine();
 			if (colour.equals("R") || colour.equals("G") || colour.equals("B") || colour.equals("Y")) {
 				valid = true;
-			}
-			else {
+			} else {
 				valid = false;
 			}
 		}
 		return colour.charAt(0);
 	}
 }
-

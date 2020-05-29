@@ -25,14 +25,14 @@ public class Board {
 	}
 	
 	public char getCellState(int col, int row) {
-		return board[col][row].getState();
+		return board[row][col].getState();
 	}
 
 	public void floodFill(int col, int row,char targetColour, char replaceColour) {
-		if (targetColour == replaceColour||board[col][row].getState() != targetColour) {
+		if (targetColour == replaceColour||board[row][col].getState() != targetColour) {
 			return; 
 		}
-		else{board[col][row].setState(replaceColour);}
+		else{board[row][col].setState(replaceColour);}
 
 		if (col>0) {
 			floodFill((col-1),row,targetColour, replaceColour);

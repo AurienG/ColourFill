@@ -1,6 +1,5 @@
 package colourFill;
 
-
 import java.util.Random;;
 
 public class Cell {
@@ -32,12 +31,13 @@ public class Cell {
 	public void setState(char colour) {
 		if (colour == 'R') {
 			state = 'R';
-		}else if(colour == 'G') {
-			state = 'G';	
-		}else if(colour == 'B') {
-			state = 'B';}
-		else if(colour == 'Y') {
-			state = 'Y';}
+		} else if (colour == 'G') {
+			state = 'G';
+		} else if (colour == 'B') {
+			state = 'B';
+		} else if (colour == 'Y') {
+			state = 'Y';
+		}
 	}
 
 	/**
@@ -57,16 +57,13 @@ public class Cell {
 		String cell = "0";
 		if (state == 'R') {
 			cell = "R";
-			}
-		else if (state == 'B') {
+		} else if (state == 'B') {
 			cell = "B";
-		}
-		else if (state == 'Y') {
+		} else if (state == 'Y') {
 			cell = "Y";
-		}
-		else if (state == 'G'){
+		} else if (state == 'G') {
 			cell = "G";
 		}
 		return cell;
-		}
 	}
+}
