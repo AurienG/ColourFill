@@ -23,7 +23,6 @@ public class Driver {
 		board.display();
 		
 		// console input
-		Scanner in = new Scanner(System.in);
 		boolean done = false;
 		String value = "";
 		char colour = 'f';
