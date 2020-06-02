@@ -51,8 +51,9 @@ public class Driver {
 			}
 			
 			System.out.println("What size board");//S = SMALL, M = MEDIUM, B = BIG (5,7,9)
-			String size = in.next();
+			int size = in.nextInt();
 
+			/**
 			// create the board
 			if (size.equals("S")) {
 				numRows=5;
@@ -64,7 +65,9 @@ public class Driver {
 				numRows=9;
 				numCols=9;
 			}
-			
+			**/
+			numRows = size;
+			numCols = size;
 			Board board = new Board(numRows, numCols);
 			board.display();
 
