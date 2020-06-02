@@ -1,7 +1,7 @@
 package colourFill;
 
 import java.util.Scanner;
-
+import java.util.concurrent.TimeUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,12 +13,12 @@ import java.util.List;
  */
 public class Driver {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 
-		// Setup constants for the Board
-		final int NUMROWS = 7;
-		final int NUMCOLS = 7;
-
+		// Setup "constants" for the Board
+		int numRows = 0;
+		int numCols = 0;
+		
 		// console input
 		Scanner in = new Scanner(System.in);
 		char colour = ' ';
@@ -49,9 +49,23 @@ public class Driver {
 			} else if (mode.equals("3")) {
 				robot = true;
 			}
+			
+			System.out.println("What size board");//S = SMALL, M = MEDIUM, B = BIG (5,7,9)
+			String size = in.next();
 
 			// create the board
-			Board board = new Board(NUMROWS, NUMCOLS);
+			if (size.equals("S")) {
+				numRows=5;
+				numCols=5;
+			}else if (size.equals("M")){
+				numRows=7;
+				numCols=7;
+			}else if (size.equals("B")) {
+				numRows=9;
+				numCols=9;
+			}
+			
+			Board board = new Board(numRows, numCols);
 			board.display();
 
 			if (single) {
@@ -76,7 +90,7 @@ public class Driver {
 					if (!player1Win) {
 						System.out.print("Player 2, ");
 						colour = getColour();
-						board.floodFill(NUMROWS - 1, NUMCOLS - 1, board.getCellState(NUMROWS - 1, NUMCOLS - 1), colour);
+						board.floodFill(numRows - 1, numCols - 1, board.getCellState(numRows - 1, numCols - 1), colour);
 						board.display();
 						player2Win = isWinner(board);
 					}
@@ -94,8 +108,9 @@ public class Driver {
 
 					if (!humanWin) {
 						System.out.println("Robot is going...");
+						TimeUnit.SECONDS.sleep(1);
 						colour = getRobotColour(board);
-						board.floodFill(NUMROWS - 1, NUMCOLS - 1, board.getCellState(NUMROWS - 1, NUMCOLS - 1), colour);
+						board.floodFill(numRows - 1, numCols - 1, board.getCellState(numRows - 1, numCols - 1), colour);
 						board.display();
 						robotWin = isWinner(board);
 					}
