@@ -50,10 +50,9 @@ public class Driver {
 				robot = true;
 			}
 			
-			System.out.println("What size board");//S = SMALL, M = MEDIUM, B = BIG (5,7,9)
-			int size = in.nextInt();
+			System.out.println("What size board (Small: 5, Medium: 7, Big: 9 )");//S = SMALL, M = MEDIUM, B = BIG (5,7,9)
+			String size = in.next();
 
-			/**
 			// create the board
 			if (size.equals("S")) {
 				numRows=5;
@@ -65,16 +64,15 @@ public class Driver {
 				numRows=9;
 				numCols=9;
 			}
-			**/
-			numRows = size;
-			numCols = size;
-			Board board = new Board(numRows, numCols);
+
+			int difficulty = getColourMode();
+			Board board = new Board(numRows, numCols,difficulty);
 			board.display();
 
 			if (single) {
 				while (!singleWin) {
 					singleWin = true;
-					colour = getColour();
+					colour = getColour(difficulty);
 					board.floodFill(0, 0, board.getCellState(0, 0), colour);
 					board.display();
 					count++;
@@ -85,14 +83,14 @@ public class Driver {
 					player1Win = true;
 					player2Win = true;
 					System.out.print("Player 1, ");
-					colour = getColour();// more clear when there are buttons for whose turn it is
+					colour = getColour(difficulty);// more clear when there are buttons for whose turn it is
 					board.floodFill(0, 0, board.getCellState(0, 0), colour);
 					board.display();
 					player1Win = isWinner(board);
 
 					if (!player1Win) {
 						System.out.print("Player 2, ");
-						colour = getColour();
+						colour = getColour(difficulty);
 						board.floodFill(numRows - 1, numCols - 1, board.getCellState(numRows - 1, numCols - 1), colour);
 						board.display();
 						player2Win = isWinner(board);
@@ -103,7 +101,7 @@ public class Driver {
 				while (!humanWin && !robotWin) {
 					humanWin = true;
 					robotWin = true;
-					colour = getColour();
+					colour = getColour(difficulty);
 					board.floodFill(0, 0, board.getCellState(0, 0), colour);
 					board.display();
 					count++;
@@ -159,20 +157,45 @@ public class Driver {
 		return mode;
 	}
 
-	private static char getColour() {
+	private static char getColour(int difficulty) {
 		Scanner in = new Scanner(System.in);
 		boolean valid = false;
 		String colour = "";
 
 		while (!valid) {
-			String prompt = String.format("Which Colour (" + "R" + "B" + "Y" + "G" + "): ");
-			System.out.println(prompt);
-			colour = in.nextLine();
-			if (colour.equals("R") || colour.equals("G") || colour.equals("B") || colour.equals("Y")) {
-				valid = true;
-			} else {
-				valid = false;
+			if (difficulty==1) {
+				String prompt = String.format("Which Colour (" + "R" + "B" + "Y" + "G" + "): ");
+				System.out.println(prompt);
+				colour = in.nextLine();
+				if (colour.equals("R") || colour.equals("G") || colour.equals("B") || colour.equals("Y")) {
+					valid = true;
+				} else {
+					valid = false;
+				}
 			}
+			else if (difficulty == 2) {
+				String prompt = String.format("Which Colour (" + "R" + "B" + "Y" + "G" + "O" + "P" +"): ");
+				System.out.println(prompt);
+				colour = in.nextLine();
+				if (colour.equals("R") || colour.equals("G") || colour.equals("B") || colour.equals("Y") 
+						|| colour.equals("O") || colour.equals("P")) {
+					valid = true;
+				} else {
+					valid = false;
+				}
+			}
+			else if (difficulty==3) {
+				String prompt = String.format("Which Colour (" + "R" + "B" + "Y" + "G" + "O" + "P" + "V" + "T" + "): ");
+				System.out.println(prompt);
+				colour = in.nextLine();
+				if (colour.equals("R") || colour.equals("G") || colour.equals("B") || colour.equals("Y") 
+						|| colour.equals("O") || colour.equals("P") || colour.equals("V") || colour.equals("T")) {
+					valid = true;
+				} else {
+					valid = false;
+				}
+			}
+			
 		}
 		return colour.charAt(0);
 	}
@@ -192,6 +215,26 @@ public class Driver {
 		}
 
 		return true;
+	}
+	
+	public static int getColourMode() {
+		int colourMode = 0;
+		Scanner in = new Scanner (System.in);
+		boolean valid = false;
+		
+		while (valid != true) {
+			System.out.println("What colour difficulty do you want? ");
+			colourMode = in.nextInt();
+			
+			if (colourMode==1||colourMode==2|| colourMode==3) {
+				valid = true;
+			}
+			else {
+				valid = false;
+			}
+		}
+		
+		return colourMode;
 	}
 
 	private static char getRobotColour(Board board) {

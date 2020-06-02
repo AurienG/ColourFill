@@ -14,13 +14,13 @@ public class Board {
 	 * @param aRows number of rows in board
 	 * @param aCols number of columns in board
 	 */
-	public Board(int numRows, int numCols) {
+	public Board(int numRows, int numCols, int difficulty) {
 		board = new Cell[numRows][numCols];
 		this.numRows = numRows;
 		this.numCols = numCols;
 		for (int i = 0; i < numRows; i++) {
 			for (int j = 0; j < numCols; j++) {
-				board[i][j] = new Cell(); // no color
+				board[i][j] = new Cell(difficulty); // no color
 			}
 		}
 	}

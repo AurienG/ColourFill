@@ -4,7 +4,7 @@ import java.util.Random;;
 
 public class Cell {
 	Random rand = new Random();
-	char[] chars = "RYGB".toCharArray();
+	char[] chars = "RYGBOPVT".toCharArray();
 	private char state;
 
 	/**
@@ -19,8 +19,17 @@ public class Cell {
 	/**
 	 * Default constructor with empty state.
 	 */
-	public Cell() {
-		state = chars[rand.nextInt(chars.length)];
+	public Cell(int difficulty) {
+		if (difficulty == 1) {
+			state = chars[rand.nextInt(4)];
+		}
+		else if (difficulty == 2) {
+			state = chars[rand.nextInt(6)];
+		}
+		else if (difficulty == 3) {
+			state = chars[rand.nextInt(chars.length)];
+		}
+		
 	}
 
 	/**
@@ -37,7 +46,16 @@ public class Cell {
 			state = 'B';
 		} else if (colour == 'Y') {
 			state = 'Y';
+		} else if (colour == 'O') {
+			state = 'O';
+		} else if (colour == 'P') {
+			state = 'P';
+		} else if (colour == 'V') {
+			state = 'V';
+		} else if (colour == 'T') {
+			state = 'T';
 		}
+		
 	}
 
 	/**
@@ -63,6 +81,14 @@ public class Cell {
 			cell = "Y";
 		} else if (state == 'G') {
 			cell = "G";
+		} else if (state == 'O') {
+			cell = "O";
+		} else if (state == 'P') {
+			cell = "P";
+		} else if (state == 'V') {
+			cell = "V";
+		} else if (state == 'T') {
+			cell = "T";
 		}
 		return cell;
 	}
