@@ -17,7 +17,8 @@ public class Cell {
 	}
 
 	/**
-	 * Default constructor with empty state.
+	 * Fills the cells of the board with random colours depending on difficulty
+	 * @param difficulty
 	 */
 	public Cell(int difficulty) {
 		if (difficulty == 1) {

@@ -216,7 +216,11 @@ public class Driver {
 
 		return true;
 	}
-	
+	/**
+	 * Asks how many colours wanted in the game. Options are 
+	 * four, six or eight.
+	 * @return number corresponding to amount of colours
+	 */
 	public static int getColourMode() {
 		int colourMode = 0;
 		Scanner in = new Scanner (System.in);

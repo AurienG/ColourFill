@@ -24,7 +24,12 @@ public class Board {
 			}
 		}
 	}
-
+	/**
+	 * takes what colour is in a certain index
+	 * @param row
+	 * @param col
+	 * @return the letter that repressents a colour
+	 */
 	public char getCellState(int row, int col) {
 		return board[row][col].getState();
 	}
