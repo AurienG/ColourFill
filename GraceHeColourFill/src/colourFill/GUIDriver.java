@@ -24,8 +24,8 @@ import javafx.stage.Stage;
 
 public class GUIDriver extends Application {
 	
-	final static int WIDTH=400;
-	final static int HEIGHT=200;
+	final static int WIDTH=500;
+	final static int HEIGHT=500;
 	Board board = new Board(5,5, 1);
 	Button[][] slots = new Button[5][5];
 	
@@ -41,20 +41,31 @@ public class GUIDriver extends Application {
 		final int buttonW = 100;
 		final int buttonH = 100;
 		
-		/**
 		//Board Size Button
 		Label boardSize = new Label ("Board size");
 		GridPane.setConstraints(boardSize, 0, 0);
 		
 		TextField boardSizeIn = new TextField();
+		GridPane.setConstraints(boardSizeIn, 1, 0);
 		boardSizeIn.setPromptText("S, M, or B");
+		
+		Label gameType = new Label ("Game Type");
+		GridPane.setConstraints(gameType, 0, 1);
+		
+		TextField gameTypeIn = new TextField();
+		GridPane.setConstraints(gameTypeIn, 1, 1);
+		gameTypeIn.setPromptText("1: One player, 2: Two Player, 3:Robot");
+		
+		Label difficulty = new Label ("Difficulty");
+		GridPane.setConstraints(difficulty, 0, 2);
+		
+		TextField difficultyIn = new TextField();
+		GridPane.setConstraints(difficultyIn, 1, 2);
+		difficultyIn.setPromptText("1: 4 colours, 2: 6 colours, 3: 8 colours");
 		
 		Button btnPlay = new Button ("play");
 		
-		btnPlay.setOnAction(e -> {
-			
-		});
-		**/
+	
 		
 		Button btnRed = new Button();
 		btnRed.setStyle("-fx-base: #dc143c;");
@@ -72,11 +83,13 @@ public class GUIDriver extends Application {
 		btnGreen.setStyle("-fx-base: #008000;");
 		btnGreen.setPrefSize(buttonW, buttonH);
 		
-		grid.setAlignment(Pos.TOP_LEFT);
-		grid.add(btnRed, 0, 0);
-		grid.add(btnBlue, 1,0);
-		grid.add(btnYellow, 2, 0);
-		grid.add(btnGreen,3,0);
+		
+		
+		grid.setAlignment(Pos.TOP_CENTER);
+		grid.add(btnRed, 0, 3);
+		grid.add(btnBlue, 1,3);
+		grid.add(btnYellow, 2,3);
+		grid.add(btnGreen,3,3);
 		
 		//slots
 		for (int i=0; i<board.getNumRows(); i++) {
@@ -88,7 +101,7 @@ public class GUIDriver extends Application {
 		}
 		for (int i=0; i<board.getNumRows(); i++) {
 			for (int j=0; j<board.getNumCols(); j++) {
-				grid.add(slots[i][j], j, i+1);
+				grid.add(slots[i][j], j, i+4);
 				
 			}
 		}
@@ -96,7 +109,7 @@ public class GUIDriver extends Application {
 		//Button Clicks
 		
 			
-		
+		grid.getChildren().addAll(boardSize, boardSizeIn, gameType, gameTypeIn, difficulty, difficultyIn);
 		Scene scene = new Scene(grid);
 		stage.setScene(scene);
 		stage.show();
