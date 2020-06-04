@@ -112,14 +112,14 @@ public class GUIDriver extends Application {
 		grid.add(btnYellow, 2, 3);
 		grid.add(btnGreen, 3, 3);
 				
-		grid.getChildren().addAll(boardSize, boardSizeOptions, gameType, gameTypeOptions, difficulty, difficultyOptions, btnPlay);
+		
 
 		// slots
 		for (int i = 0; i < board.getNumRows(); i++) {
 			for (int j = 0; j < board.getNumCols(); j++) {
 				slots[i][j] = new Button();
 				slots[i][j].setPrefSize(buttonW, buttonH);
-				slots[i][j].setStyle("-fx-base: #000000;");
+				slots[i][j].setStyle("-fx-base: #9400d3;");
 			}
 		}
 		for (int i = 0; i < board.getNumRows(); i++) {
@@ -128,9 +128,56 @@ public class GUIDriver extends Application {
 
 			}
 		}
+		
+		btnRed.setOnAction(e ->{
+			board.floodFill(0, 0, board.getCellState(0, 0), 'R');
+			updateBoard(board,slots);
+		});
+		
+		btnBlue.setOnAction(e ->{
+			board.floodFill(0, 0, board.getCellState(0, 0), 'B');
+			updateBoard(board,slots);
+		});
+		
+		btnYellow.setOnAction(e ->{
+			board.floodFill(0, 0, board.getCellState(0, 0), 'Y');
+			updateBoard(board,slots);
+		});
+		
+		btnGreen.setOnAction(e ->{
+			board.floodFill(0, 0, board.getCellState(0, 0), 'G');
+			updateBoard(board,slots);
+		});
+		
+		grid.getChildren().addAll(boardSize, boardSizeOptions, gameType, 
+				gameTypeOptions, difficulty, difficultyOptions, btnPlay);
 		Scene scene = new Scene(grid);
 		stage.setScene(scene);
 		stage.show();
 
 	}
-}
+	
+	private void updateBoard(Board board, Button[][] slots) {
+		
+		for (int i=0; i< board.getNumRows(); i++) {
+			for (int j=0; j<board.getNumCols(); j++) {
+				switch (board.getCellState(i, j)) {
+				case 'R':
+					slots[i][j].setStyle("-fx-base: #dc143c;");
+					break;
+				case 'B':
+					slots[i][j].setStyle("-fx-base: #1e90ff;");
+					break;
+				case 'Y':
+					slots[i][j].setStyle("-fx-base: #ffd700;");
+					break;
+				case 'G':
+					slots[i][j].setStyle("-fx-base: #008000;");
+					break;	
+				}
+				
+			}
+		}
+		
+		}
+	}
