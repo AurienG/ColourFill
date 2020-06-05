@@ -227,10 +227,10 @@ public class Driver {
 		boolean valid = false;
 		
 		while (valid != true) {
-			System.out.println("What colour difficulty do you want? ");
+			System.out.println("How many colours do you want ");
 			colourMode = in.nextInt();
 			
-			if (colourMode==1||colourMode==2|| colourMode==3) {
+			if (colourMode==4||colourMode==6|| colourMode==8) {
 				valid = true;
 			}
 			else {

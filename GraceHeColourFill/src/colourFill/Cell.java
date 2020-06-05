@@ -21,13 +21,13 @@ public class Cell {
 	 * @param difficulty
 	 */
 	public Cell(int difficulty) {
-		if (difficulty == 1) {
+		if (difficulty == 4) {
 			state = chars[rand.nextInt(4)];
 		}
-		else if (difficulty == 2) {
+		else if (difficulty == 6) {
 			state = chars[rand.nextInt(6)];
 		}
-		else if (difficulty == 3) {
+		else if (difficulty == 8) {
 			state = chars[rand.nextInt(chars.length)];
 		}
 		
