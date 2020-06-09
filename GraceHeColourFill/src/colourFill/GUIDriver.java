@@ -40,6 +40,17 @@ public class GUIDriver extends Application {
 		
 		boolean inPlay = true;
 		
+		//Shows which player is playing
+		Label labelPlayer1 = new Label ("Player 1");
+		labelPlayer1.setFont(Font.font("Verdana", 20));
+		GridPane.setConstraints(labelPlayer1, 5, 1);
+		
+		Label labelPlayer2 = new Label ("Player 2");
+		labelPlayer2.setFont(Font.font("Verdana", 20));
+		GridPane.setConstraints(labelPlayer2, 5, 1);
+		
+		
+		
 		//Pop up for Winning
 		Popup popEnd = new Popup();
 		Label labelEnd = new Label();
@@ -123,6 +134,8 @@ public class GUIDriver extends Application {
 		stage.setScene(start);
 		stage.show();
 		
+		
+		
 		btnPlay.setOnAction(e -> {
 			
 			//Set up constants for the board
@@ -132,7 +145,10 @@ public class GUIDriver extends Application {
 
 			boolean single = false;
 			boolean singleWin = false;
+			
 			boolean multi = false;
+			boolean player1Win = false;
+			boolean player2Win = false;
 			
 			int count = 0;
 			
@@ -220,6 +236,7 @@ public class GUIDriver extends Application {
 						labelCount.setText("Count: " + Integer.toString(counter));
 						counter();
 						updateBoard(board, slots);
+						
 					});
 
 					btnBlue.setOnAction(f -> {
@@ -269,8 +286,14 @@ public class GUIDriver extends Application {
 						labelCount.setText("Count: " + Integer.toString(counter));
 						counter();
 						updateBoard(board, slots);
+						
 					});
-					
+					if (isWinner(board) == true) {
+						slots[0][0].setStyle("-fx-base: #fffafa;");
+					}
+					else if (isWinner(board) == false) {
+						slots[0][0].setStyle("-fx-base: #708090;");
+					}
 					grid.add(labelCount, 5, 0);
 					
 					Scene scene = new Scene(grid);
@@ -282,7 +305,134 @@ public class GUIDriver extends Application {
 					
 					}
 				}
+			else if (gameTypeOptions.getValue().equals("Two Player")) {
+				while(!player1Win && !player2Win) {
+					player1Win = true;
+					player2Win = true;
+					grid.getChildren().remove(labelPlayer2);
+					grid.getChildren().add(labelPlayer1);
+					
+					
+					
+					btnRed.setOnAction(f -> {
+						board.floodFill(0, 0, board.getCellState(0, 0), 'R');
+						updateBoard(board, slots);
+						grid.getChildren().remove(labelPlayer1);
+						grid.getChildren().add(labelPlayer2);
+					});
+
+					btnBlue.setOnAction(f -> {
+						board.floodFill(0, 0, board.getCellState(0, 0), 'B');
+						updateBoard(board, slots);
+					});
+
+					btnYellow.setOnAction(f -> {
+						board.floodFill(0, 0, board.getCellState(0, 0), 'Y');
+						updateBoard(board, slots);
+					});
+
+					btnGreen.setOnAction(f -> {
+						board.floodFill(0, 0, board.getCellState(0, 0), 'G');
+						updateBoard(board, slots);
+					});
+					
+					btnOrange.setOnAction(f -> {
+						board.floodFill(0, 0, board.getCellState(0, 0), 'O');
+						updateBoard(board, slots);
+					});
+					
+					btnPink.setOnAction(f -> {
+						board.floodFill(0, 0, board.getCellState(0, 0), 'P');
+						updateBoard(board, slots);
+					});
+					
+					btnViolet.setOnAction(f -> {
+						board.floodFill(0, 0, board.getCellState(0, 0), 'V');
+						updateBoard(board, slots);
+					});
+					
+					btnTeal.setOnAction(f -> {
+						board.floodFill(0, 0, board.getCellState(0, 0), 'T');
+						updateBoard(board, slots);
+						
+						
+					});
+					
+					Scene scene = new Scene(grid);
+					stage.setScene(scene);
+					stage.show();
+					player1Win = isWinner(board);
+					
+					//player 2 turn
+					if (!player1Win) {
+						grid.getChildren().remove(labelPlayer1);
+						grid.getChildren().add(labelPlayer2);
+						int r = numRows;
+						int c = numCols;
+						
+
+						btnRed.setOnAction(f -> {
+							board.floodFill(r - 1, c - 1, board.getCellState(r - 1, c - 1), 'R');
+							updateBoard(board, slots);
+						});
+
+						btnBlue.setOnAction(f -> {
+							board.floodFill(r - 1, c - 1, board.getCellState(r - 1, c - 1), 'B');
+							updateBoard(board, slots);
+						});
+
+						btnYellow.setOnAction(f -> {
+							board.floodFill(r - 1, c - 1, board.getCellState(r - 1, c - 1), 'Y');
+							updateBoard(board, slots);
+						});
+
+						btnGreen.setOnAction(f -> {
+							board.floodFill(r - 1, c - 1, board.getCellState(r - 1, c - 1), 'G');
+							updateBoard(board, slots);
+						});
+						
+						btnOrange.setOnAction(f -> {
+							board.floodFill(r - 1, c - 1, board.getCellState(r - 1, c - 1), 'O');
+							updateBoard(board, slots);
+						});
+						
+						btnPink.setOnAction(f -> {
+							board.floodFill(r - 1, c - 1, board.getCellState(r - 1, c - 1), 'P');
+							updateBoard(board, slots);
+						});
+						
+						btnViolet.setOnAction(f -> {
+							board.floodFill(r - 1, c - 1, board.getCellState(r - 1, c - 1), 'V');
+							updateBoard(board, slots);
+						});
+						
+						btnTeal.setOnAction(f -> {
+							board.floodFill(r - 1, c - 1, board.getCellState(r - 1, c - 1), 'T');
+							updateBoard(board, slots);
+							
+							
+						});
+						stage.setScene(scene);
+						stage.show();
+						player2Win = isWinner(board);
+					}
+					player2Win = false;
+				}
+			}
 			
+			
+			if (singleWin) {
+				labelEnd.setText("You finished with " + counter + " clicks");
+				popEnd.show(stage);
+			}
+			else if (player1Win) {
+				labelEnd.setText("Winner!!! Player 1");
+				popEnd.show(stage);
+			}
+			else if (player2Win) {
+				labelEnd.setText("Winner!!! Player 2");
+				popEnd.show(stage);
+			}
 		});
 		
 	}

@@ -163,7 +163,7 @@ public class Driver {
 		String colour = "";
 
 		while (!valid) {
-			if (difficulty==1) {
+			if (difficulty==4) {
 				String prompt = String.format("Which Colour (" + "R" + "B" + "Y" + "G" + "): ");
 				System.out.println(prompt);
 				colour = in.nextLine();
@@ -173,7 +173,7 @@ public class Driver {
 					valid = false;
 				}
 			}
-			else if (difficulty == 2) {
+			else if (difficulty == 6) {
 				String prompt = String.format("Which Colour (" + "R" + "B" + "Y" + "G" + "O" + "P" +"): ");
 				System.out.println(prompt);
 				colour = in.nextLine();
@@ -184,7 +184,7 @@ public class Driver {
 					valid = false;
 				}
 			}
-			else if (difficulty==3) {
+			else if (difficulty==8) {
 				String prompt = String.format("Which Colour (" + "R" + "B" + "Y" + "G" + "O" + "P" + "V" + "T" + "): ");
 				System.out.println(prompt);
 				colour = in.nextLine();
